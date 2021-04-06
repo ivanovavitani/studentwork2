@@ -14,4 +14,17 @@ def get_ref_and_geom():
     type = geom_ref.GetGeometryName()
     return print("Тип геометрии \n", type), \
            print("Проекция \n", spatialRef)
+
+
+# Функция преобразования геометрии в форматы wkt и prj
+def geom():
+    data = ogr.Open('./parking_wgs84.shp')
+    layer = data.GetLayer(0)
+    spatialRef = layer.GetSpatialRef()
+    with open('file_wkt.wkt', 'w') as file:
+        file.write(spatialRef.ExportToWkt())
+    with open('file_prj.prj', 'w') as file:
+        file.write(spatialRef.ExportToWkt())
+
 get_ref_and_geom()
+geom()
