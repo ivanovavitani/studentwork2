@@ -26,5 +26,22 @@ def geom():
     with open('file_prj.prj', 'w') as file:
         file.write(spatialRef.ExportToWkt())
 
+
+# Создание файла geojson
+def geojson():
+    data = ogr.Open('./parking_wgs84.shp', 0)
+    layer = data.GetLayer(0)
+    gson = {
+        'type': 'FeatureCollection',
+        'features': []
+    }
+    # формирование features
+    for feature in layer:
+        gson['features'].append(feature.ExportToJson(as_object=True))
+
+    with open('parking_wgs84.geojson', 'w') as file:
+        js.dump(gson, file)
+
 get_ref_and_geom()
 geom()
+geojson()
