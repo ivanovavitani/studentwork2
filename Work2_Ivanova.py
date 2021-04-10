@@ -21,7 +21,7 @@ def geom():
     data = ogr.Open('./parking_wgs84.shp')
     layer = data.GetLayer(0)
     spatialRef = layer.GetSpatialRef()
-    with open('file_wkt.wkt', 'w') as file:
+    with open('file_wkt.prj', 'w') as file:
         file.write(spatialRef.ExportToWkt())
     with open('file_prj.prj', 'w') as file:
         file.write(spatialRef.ExportToWkt())
