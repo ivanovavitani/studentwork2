@@ -1,6 +1,5 @@
 import gdal
 from osgeo import ogr
-import ogr
 import pprint
 import json as js
 # Функция открытия shp-файла, определение геометрии и проекции
